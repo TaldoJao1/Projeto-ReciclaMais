@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReciclaMais - Locais de Coleta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(236, 236, 236);
+      font-size: 18px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #007a50;
+      padding: 20px 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .header img {
+      height: 60px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      margin: 0;
+    }
+
+    .clique {
+      margin-left: 30px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .click_form {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #ffffff;
+      color: #007a50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e0f2f1;
+    }
+
+    .button1 {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #007a50;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button1:hover {
+      background-color: #00ac70;
+    }
+
+    .button2 {
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button2:hover {
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .button3{
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px;
+      justify-content: space-evenly;
+    }
+
+    .container {
+      width: 22%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      border: solid 1px white;
+      margin-bottom: 40px;
+      display: grid;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-container h1 {
+      color: #333;
+      font-size: 24px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .address {
+      font-weight: bold;
+    }
+
+    .map {
+      width: 100%;
+      height: 250px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .thumbnail {
+      width: 22%;
+      margin: 20px 0;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .thumbnail h4 {
+      color: #007a50;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .thumbnail p {
+      margin: 0;
+      color: #000;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      bottom: 0;
+      position: static;
+    }
+
+    /* Accessibility */
+    #accessibility-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #accessibility-button button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #accessibility-button button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #accessibility-button button:hover {
+        background-color: #0056b3;
+    }
+
+    #accessibility-tools {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        border-radius: 8px;
+    }
+
+    #accessibility-tools button {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #accessibility-tools button:hover {
+        background-color: #0056b3;
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      margin-top: 5px;
+      border: 0px;
+      border-top: 1px solid rgb(236, 236, 236);
+    }
+
+    .high-contrast {
+      background-color: #000;
+      color: #ccff00;
+    }
+
+    .high-contrast .container {
+      color: black;
+    }
+
+    .high-contrast .header {
+      background-color: #000000;
+    }
+
+    .high-contrast .menu ul li a {
+      color: #FF00FE;
+    }
+
+    .high-contrast .button, .high-contrast .button1 {
+      background-color: #FF00FE;
+      color: #ffffff;
+    }
+
+    .high-contrast .button2, .high-contrast .button3 {
+        color: #FF00FE;
+    }
+
+    .high-contrast .container {
+      background-color: #000;
+    }
+
+    .high-contrast footer {
+      background-color: #000;
+      color: #02fff2;
+    }
+
+    .high-contrast h1, .high-contrast span {
+      color:#02fff2;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 100%;
+      }
+
+      .thumbnail {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="img/2 (2).png" alt="Logo do site ReciclaMais">
+    
+    <div class="menu">
+    <a href="index.html" class="button2">Home</a>
+    <a href="materiais.html" class="button2">Materiais Recicláveis</a>
+    <a href="locais.html" class="button3">Locais</a> 
+    <a href="contato.html" class="button2">Contato</a>
+    </div>
+    
+    <a href="cadastro.html" class="button">Sair</a>
+</header>
+
+
+  <hr>
+
+  <div class="click_form">
+    <h3 class="clique">Envie sua sugestão:</h3> <a href="forms.html" class="button1">Sugestão de Ponto</a>
+  </div>
+
+  <div class="wrapper">
+    <!-- Fileira 1 -->
+    <div class="container">
+      <div class="header-container">
+        <h1>Alberto Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Prof. Edgar Santos, 340 - Vila Nhocuné, São Paulo - SP, 03560-080</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.548921480187!2d-46.50105525927453!3d-23.54872106121809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6747df4bdf1b%3A0xfc5c637e779a2a3!2sAv.%20Prof.%20Edgar%20Santos%2C%20340%20-%20Vila%20Nhocun%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003560-080!5e0!3m2!1spt-BR!2sbr!4v1724713167302!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>A.R Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">R. Isaura Vergueiro Naufel, 320 - Vila Nhocuné, São Paulo - SP, 03560-020</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.5754152667228!2d-46.501091359274454!3d-23.547768761182972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce67486eab3055%3A0x36be71f121bae49f!2sR.%20Isaura%20Vergueiro%20Naufel%2C%20320%20-%20Vila%20Nhocun%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003560-020!5e0!3m2!1spt-BR!2sbr!4v1724713880802!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>Ferro Velho Plástico Gamelinha</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Prof. Edgar Santos, 745 - Vila Nhocuné, São Paulo - SP, 03560-080</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.496835138903!2d-46.49768455927445!3d-23.550593161286784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6738e575ddcf%3A0x4923eab9ccf9c498!2sAv.%20Prof.%20Edgar%20Santos%2C%20745%20-%20Vila%20Nhocun%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003560-080!5e0!3m2!1spt-BR!2sbr!4v1724714063960!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <!-- Fileira 2 -->
+    <div class="container">
+      <div class="header-container">
+        <h1>AM Reciclagem</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Dr. Bernardino Brito Fonseca de Carvalho, 826 - Vila Talarico, São Paulo - SP, 03535-000</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.850698308158!2d-46.51990375927478!3d-23.537871760819705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5e0292bb8aa5%3A0x55db192d06f4184d!2sAv.%20Dr.%20Bernardino%20Brito%20Fonseca%20de%20Carvalho%2C%20826%20-%20Vila%20Talarico%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003535-000!5e0!3m2!1spt-BR!2sbr!4v1724714349632!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>JP Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Prof. Xavier de Lima, 554 - Vila Matilde, São Paulo - SP, 03557-000</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.7020389935997!2d-46.509925159274665!3d-23.543216861015853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6752bcef90df%3A0x836c234774dbeca3!2sAv.%20Prof.%20Xavier%20de%20Lima%2C%20554%20-%20Jardim%20Hercilia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003557-000!5e0!3m2!1spt-BR!2sbr!4v1724714520582!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>JRJ Comércio de Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Prof. Edgar Santos, 156 - Vila Nhocuné, São Paulo - SP, 03560-080</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.568743924321!2d-46.50233475927454!3d-23.548008561191835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce67488c906287%3A0x1658f11a3eb4c870!2sAv.%20Prof.%20Edgar%20Santos%2C%20156%20-%20Vila%20Nhocun%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003560-080!5e0!3m2!1spt-BR!2sbr!4v1724714784554!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <!-- Fileira 3 -->
+    <div class="container">
+      <div class="header-container">
+        <h1>Comércio de Metais 3 Irmão </h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Av. Líder, 1378 - Cidade Líder, São Paulo - SP, 08280-005</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.850698308158!2d-46.51990375927478!3d-23.537871760819705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5e0292bb8aa5%3A0x55db192d06f4184d!2sAv.%20Dr.%20Bernardino%20Brito%20Fonseca%20de%20Carvalho%2C%20826%20-%20Vila%20Talarico%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003535-000!5e0!3m2!1spt-BR!2sbr!4v1724714349632!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>Ju Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">R. Pedro de Labatut, 404 - Cidade Líder, São Paulo - SP, 08280-020</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.7020389935997!2d-46.509925159274665!3d-23.543216861015853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6752bcef90df%3A0x836c234774dbeca3!2sAv.%20Prof.%20Xavier%20de%20Lima%2C%20554%20-%20Jardim%20Hercilia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003557-000!5e0!3m2!1spt-BR!2sbr!4v1724714520582!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+
+    <div class="container">
+      <div class="header-container">
+        <h1>Santa Velha Sucatas</h1>
+      </div>
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <span class="address">Rua Doutor Nélson Madureira, 704, Vila Nhocune, São Paulo - SP</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <span>(11) 1234-5678</span>
+        </div>
+        <div class="info-item">
+          <span class="icon">🕒</span>
+          <span>Horário de Funcionamento: Segunda à Sexta das 08:00 às 17:00</span>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.6050349194!2d-46.50181045927469!3d-23.546704061143878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce674854512f8f%3A0x49fcab7fffe6fd82!2sR.%20Dr.%20Nelson%20Madureira%2C%20704%20-%20Vila%20Nhocun%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003560-000!5e0!3m2!1spt-BR!2sbr!4v1724716008783!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; 2024 ReciclaMais. Todos os direitos reservados.</p>
+  </footer>
+
+    <!-- Acessibilidade -->
+    <div id="accessibility-tools">
+        <button onclick="changeFontSize('increase')">Aumentar Letras</button>
+        <button onclick="changeFontSize('decrease')">Diminuir Letras</button>
+        <button onclick="toggleHighContrast()">Alto Contraste</button>
+        <button onclick="resetAccessibility()">Reiniciar Ferramentas</button>
+        
+    </div>
+
+    <div id="accessibility-button">
+        <button onclick="toggleAccessibilityTools()">
+            <img src="img/acessibilidade.png" alt="Acessibilidade">
+        </button>
+    </div>
+
+    <script>
+        let isReadableFont = false;
+        let isHighContrast = false;
+        let currentFontSize = 18;
+
+        function toggleAccessibilityTools() {
+            const tools = document.getElementById('accessibility-tools');
+            tools.style.display = tools.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function changeFontSize(action) {
+            const body = document.body;
+            if (action === 'increase') {
+                currentFontSize += 2;
+            } else if (action === 'decrease') {
+                currentFontSize = Math.max(12, currentFontSize - 2); // Define tamanho mínimo de 12px
+            }
+            body.style.fontSize = `${currentFontSize}px`;
+        }
+
+        function resetAccessibility() {
+            document.body.style.fontSize = '18px';
+            currentFontSize = 18;
+            if (isReadableFont) {
+                toggleReadableFont();
+            }
+            if (isHighContrast) {
+                toggleHighContrast();
+            }
+        }
+
+        function toggleHighContrast() {
+            const body = document.body;
+            isHighContrast = !isHighContrast;
+            if (isHighContrast) {
+                body.classList.add('high-contrast');
+            } else {
+                body.classList.remove('high-contrast');
+            }
+        }
+    </script>
+</body>
+</html>

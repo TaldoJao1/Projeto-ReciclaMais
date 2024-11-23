@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widt h=device-width, initial-scale=1.0">
+    <meta name="description" content="Solucione seus problemas de TI com os melhores serviços e soluções da IT Solutions.">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>ReciclaMais</title>
+    <style>
+
+    * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 18px;
+        transition: font-size 0.3s, background-color 0.3s, color 0.3s;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(236, 236, 236);;
+    }
+
+    /* Showcase */
+    #showcase {
+        height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #eee;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Estilo para a imagem de fundo com borrão */
+    #showcase::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("https://cdn.pixabay.com/photo/2024/04/03/05/52/ai-generated-8672132_1280.jpg") no-repeat center center/cover;
+        filter: blur(5px) brightness(70%); /* Ajuste o valor do borrão conforme necessário */
+        z-index: -1; /* Mantém a imagem atrás do texto */
+        background-color: rgba(0,0,0,0.5); /* Ajusta o filtro de cor se necessário */
+    }
+
+    /* Estilo do conteúdo dentro do #showcase */
+    #showcase-container {
+        text-align: center;
+        z-index: 1; /* Garante que o texto fique acima da imagem borrada */
+    }
+
+    #showcase-container h2 {
+        font-size: 2.8rem;
+        z-index: 1;
+    }
+
+    #showcase-container p {
+        font-size: 24px;
+        z-index: 1;
+        margin-bottom: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 15px 60px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        background: #007a50;
+        color: #eee;
+        border-radius: 5px;
+        transition: background 500ms ease;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background: #004e34;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 12px 20px;
+        background-color: #ffffff;
+        color: #007a50;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #e0f2f1;
+        color: #000000;
+    }
+
+    .button2 {
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button2:hover {
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .button3{
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff;
+        color: #007a50;
+    }
+    
+
+    .headline {
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 50px;
+        letter-spacing: 2px;
+    }
+
+    .headline-text {
+        margin-left: 25px;
+        margin-right: 25px;
+        text-align: justify;
+    }
+
+    .headline1 {
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 50px;
+        letter-spacing: 2px;
+        color: black;
+    }
+
+    .headline2 {
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 50px;
+        letter-spacing: 2px;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #007a50;
+        padding: 20px 40px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: #fff;
+    }
+
+    .header img {
+        height: 60px;
+    }
+
+    .header h1 {
+        font-size: 26px;
+        margin: 0;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Showcase */
+    #showcase {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #eee;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Estilo do conteúdo dentro do #showcase */
+    #showcase-container {
+        text-align: center;
+        z-index: 1; /* Garante que o texto fique acima da imagem borrada */
+    }
+
+    /* O que fazemos */
+    .fazemos {
+        width: 100%;
+        background: rgb(236, 236, 236);
+        color: rgb(255, 255, 255);
+        padding: 50px;
+    }
+
+    .fazemos-container {
+        display: flex;
+        align-items: flex-start; /* Alinha a imagem e o texto no topo */
+        justify-content: center; /* Centraliza o conteúdo horizontalmente */
+        gap: 30px; /* Espaço entre a imagem e o texto */
+    }
+
+    .fazemos-box {
+        background-color: #007a50; /* Cor verde */
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: flex-start; /* Alinha a imagem e o texto no topo */
+        width: 100%;
+    }
+
+    .fazemos-item {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Pequeno espaço entre a imagem e o texto */
+    }
+
+    .fazemos-img {
+        width:600px; /* Tamanho adequado para a imagem */
+        height:550px; /* Altura da imagem */
+        border-radius: 10px;
+    }
+
+    .texto {
+        color: rgb(0, 0, 0); /* Cor do texto branca */
+        padding: 10px 20px; /* Padding ajustado */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start; /* Alinha o conteúdo do texto ao topo */
+        height: 600px; /* Altura igual à da imagem */
+        max-width: 600px; /* Controla a largura do texto */
+    }
+
+    .fazemos-texto-box {
+        padding: 10px;
+        border-radius: 10px;
+        flex: 1; /* Deixa o texto ocupar o espaço restante */
+    }
+
+    .fazemos-text {
+        padding: 10px;
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: justify;
+        line-height: 1.6;
+        height: 100%; /* Garante que o texto ocupe toda a altura disponível */
+    }
+
+    .fazemos-text1 {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    /* Features */
+    #features {
+        width: 100%;
+        background: #222;
+        color: #eee;
+        padding: 50px;
+    }
+
+    #features-container {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        grid-column-gap: 50px;
+    }
+
+    .feature {
+        display: flex;
+        flex-direction: column;
+        background: #007a50;
+        padding: 20px;
+        border-radius: 20px;
+        border-color: rgb(0, 0, 0);
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .feature-title {
+        font-weight: bold;
+    }
+
+    /* Product */
+    #product {
+        width: 100%;
+        padding: 50px;
+    }
+
+    #product-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    #product-container img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    #waste-table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        text-align: left;
+    }
+
+    #waste-table th, #waste-table td {
+        padding: 12px 15px;
+        border: 1px solid #ffffff;
+    }
+
+    #waste-table th {
+        background-color: #007a50;
+        font-weight: bold;
+    }
+
+    td.red { background-color: #eb0000; color: white; }
+    td.yellow { background-color: #f0f000; color: black; }
+    td.brown { background-color: #8b590d; color: white; }
+    td.gray { background-color: #7c7c7c; color: white; }
+    td.blue { background-color: #0000ff; color: white; }
+    td.white { background-color: #ffffff; color: black; }
+    td.orange { background-color: #ff9205; color: white; }
+    td.black { background-color: #000000; color: white; }
+    td.purple { background-color: #7900db; color: white; }
+
+    #items .item {
+        display: flex;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    #items .item i {
+        margin-right: 15px;
+    }
+
+    /* Testimonials */
+    #testimonials {
+        background-color: #222; /* Cor neutra de fundo */
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .headline {
+        font-size: 2em;
+        color: #ffffff; 
+        margin-bottom: 20px;
+    }
+
+    #testimonials-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .testimonial {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+    }
+
+    /* Gallery */
+    #gallery {
+        width: 90%;
+        margin: auto;
+        padding: 50px 0; /* Ajuste o padding conforme necessário */
+    }
+
+    #gallery-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+        justify-items: center; /* Centraliza os itens horizontalmente */
+    }
+
+    .gallery-image {
+        width: 100%; /* Ajuste a largura conforme necessário */
+        max-width: 540px; /* Limita a largura máxima */
+        height: 100%; /* Mantém a proporção da imagem */
+        border-radius: 20px;
+    }
+
+    /* Video */
+    .video{
+        background-color: rgb(236, 236, 236);
+        border-radius: 10px;
+        border: solid 1.5px #007a50;
+    }
+
+
+
+    /* Icon */
+    #icon{
+        padding-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+        bottom: 0;
+        position: static;
+        padding: 30px;
+    }
+
+    /* Accessibility */
+    #accessibility-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #accessibility-button button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #accessibility-button button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #accessibility-button button:hover {
+        background-color: #0056b3;
+    }
+
+    #accessibility-tools {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        border-radius: 8px;
+    }
+
+    #accessibility-tools button {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #accessibility-tools button:hover {
+        background-color: #0056b3;
+    }
+
+    /* High Contrast */
+    .high-contrast {
+        background-color: #000;
+        color: #ccff00;
+    }
+
+    .high-contrast .container {
+        color: black;
+    }
+
+    .high-contrast .header {
+        background-color: #000000;
+    }
+
+    .high-contrast .button {
+        background-color: #FF00FE;
+        color: #ffffff;
+    }
+
+    .high-contrast .button2, .high-contrast .button3 {
+        color: #FF00FE;
+    }
+
+    .high-contrast .fazemos,
+    .high-contrast .fazemos2 {
+        background-color: #000;
+        color: #FF00FE
+    }
+
+    .high-contrast .fazemos-title,
+    .high-contrast .fazemos-title1 {
+        color: #FF00FE;
+    }
+
+    .high-contrast .fazemos-text1{
+        color: #ccff00;
+    }
+
+    .high-contrast p {
+        color: #ccff00;
+    }
+
+    .high-contrast .showcase {
+        background-color: #000;
+    }
+
+    .high-contrast #showcase::before {
+        filter: grayscale(100%) blur(5px);
+    }
+
+    .high-contrast .gallery-image{
+        filter: grayscale(100%);
+    }
+
+    .high-contrast .btn {
+        background-color: #000;
+        color: #FF00FE;
+    }
+
+    .high-contrast #features {
+        background-color: #000000;
+    }
+
+    .high-contrast i,
+    .high-contrast .feature-title {
+        color: #FF00FE;
+    }
+
+    .high-contrast #testimonials {
+        background-color: #000000;
+    }
+
+    .high-contrast .testimonial,
+    .high-contrast .testimonial p {
+        background-color: #000;
+        color: #FF00FE;
+    }
+
+    .high-contrast .feature{
+        border-color: white;
+        background-color: #000;
+    }
+
+    .high-contrast .headline {
+        color: #FF00FE;
+    }
+
+    .high-contrast .headline-text {
+        color: #02fff2;
+    }
+
+    .high-contrast .headline1 {
+        color: #FF00FE;
+    }
+
+    .high-contrast .headline2 {
+        color: #FF00FE;
+    }
+
+    .high-contrast footer {
+        background-color: #000;
+        color: #02fff2;
+    }
+
+    .high-contrast #waste-table{
+        color: #ccff00;
+    }
+    .high-contrast #waste-table th{
+        background-color: #000;
+    }
+
+    hr {
+        width: 100%;
+        height: 1px;
+        margin-top: 5px;
+        border: 0px;
+        border-top: 1px solid rgb(255, 255, 255);
+    }
+
+    /*Tabela Lixo*/
+    .high-contrast .linha2{
+        color:#fff;
+    }
+
+    .high-contrast td.red{
+        background-color: #000;
+    }
+
+    .high-contrast td.yellow{
+        background-color: #000;
+        color: #fff;
+    }
+
+    .high-contrast td.brown{
+        background-color: #000;
+    }
+
+    .high-contrast td.gray{
+        background-color: #000;
+    }
+
+    .high-contrast td.blue{
+        background-color: #000;
+    }
+
+    .high-contrast td.white{
+        background-color: #000;
+        color: #fff;
+    }
+
+    .high-contrast td.orange{
+        background-color: #000;
+    }
+
+    .high-contrast td.purple{
+        background-color: #000;
+    }
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="img/2 (2).png" alt="Logo do site ReciclaMais">
+        
+        <div class="menu">
+        <a href="index.html" class="button3" class="active">Home</a>
+        <a href="materiais.html" class="button2">Materiais Recicláveis</a>
+        <a href="locais.html" class="button2">Locais</a> 
+        <a href="contato.html" class="button2">Contato</a>
+        </div>
+        
+        <a href="cadastro.html" class="button">Cadastre-se</a>
+    </header>
+
+    <header id="showcase">
+        <div id="showcase-container">
+            <h2 class="fazemos-title1">ReciclaMais</h2>
+            <p class="fazemos-text1">Cada pequeno gesto de reciclagem é uma grande contribuição para um futuro mais sustentável</p>
+            <p class="fazemos-text1">Juntos podemos transformar o hoje para um amanhã melhor.</p>
+        </div>
+    </header>
+
+    <hr>
+
+     <!-- Vídeo -->
+
+    
+    <!-- Divisão 1 -->
+    <section id="fazemos" class="fazemos">
+        <h1 class="headline1">O que é Sustentabilidade?</h1>
+        <div id="fazemos-container" class="fazemos-container">
+            <div class="fazemos-item imagem">
+                <img src="img/sustentavel.jpg" alt="Imagem sobre Sustentabilidade" class="fazemos-img">
+            </div>
+            <div class="fazemos-item texto">
+                <p class="fazemos-text">
+                    &nbsp;&nbsp;Sustentabilidade é o princípio de equilibrar o uso dos recursos naturais com a necessidade de preservá-los, garantindo um futuro viável para as próximas gerações. Esse conceito surgiu da urgência em repensar como a sociedade usa os recursos naturais, promovendo alternativas que evitam o esgotamento e preservam o meio ambiente. A sustentabilidade busca garantir que os recursos sejam explorados de forma responsável, sem comprometer o bem-estar das futuras gerações.
+                    <br><br>
+                    &nbsp;&nbsp;Em essência, a sustentabilidade envolve o equilíbrio entre as necessidades humanas e a preservação ambiental. Ao adotar práticas sustentáveis, buscamos um desenvolvimento que seja ecologicamente correto, socialmente justo e economicamente viável, garantindo um futuro saudável para todos.
+                </p>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <hr>
+
+    <!-- Divisão 2 -->
+    <section id="features">
+        <h1 class="headline">Como ser Sustentável?</h1>
+        <h4 class="headline-text">Adotar a sustentabilidade significa implementar práticas que reduzam o impacto no meio ambiente, na economia e na sociedade. É um estilo de vida centrado nas necessidades reais do ser humano, abraçando a filosofia do “menos é mais”. Isso envolve reconhecer a limitação dos recursos naturais e usá-los de forma consciente e responsável.</h4> <br><br>
+        <div id="features-container">
+            <div class="feature">
+                <i class="fas fa-bolt fa-3x" alt="Ícone de Raio" id="icon"></i>
+                <span class="feature-title">Economizar Energia Elétrica</span> <br>
+                <p>Algumas recomendações são: Desligue aparelhos da tomada quando não estiverem em uso, use lâmpadas led,  </p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-tint-slash fa-3x" alt="Ícone de Água Cortada" id="icon"></i> 
+                <span class="feature-title">Moderar o Consumo de Água</span> <br>
+                <p>Desligue a torneira enquanto escova os dentes, tome banhos mais curtos, reutilize a água da chuva, evite lavagens execissivas, são alguns exemplos.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-trash fa-3x" alt="Ícone de Lixo" id="icon"></i>
+                <span class="feature-title">Separar o Lixo Corretamente</span> <br>
+                <p>Descarte o lixo corretamente separando em objetos recicláveis, orgânicos e rejeitos.</p>
+            </div>
+        </div>
+    </section>
+<hr>
+<br><br>
+    <section id="product">
+        <h1 class="headline2">ONDE DESCARTAR?</h1>
+        <div id="product-container">
+            <table id="waste-table">
+                <thead>
+                    <tr>
+                        <th>Cor da Lixeira</th>
+                        <th>Tipo de Resíduo</th>
+                        <th>Exemplos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="red">Vermelha</td>
+                        <td>Plásticos</td>
+                        <td>Garrafas PET, Copos e Canudos de Plástico</td>
+                    </tr>
+                    <tr>
+                        <td class="yellow">Amarela</td>
+                        <td>Metais recicláveis</td>
+                        <td>Latas de Refrigerante, Latas de Alimentos Enlatados, Tampas Metálicas</td>
+                    </tr>
+                    <tr>
+                        <td class="brown">Marrom</td>
+                        <td>Resíduos Orgânicos</td>
+                        <td>Restos de frutas e verduras, cascas de ovos, resíduos de jardinagem</td>
+                    </tr>
+                    <tr>
+                        <td class="gray">Cinza</td>
+                        <td>Resíduos Não Recicláveis</td>
+                        <td>Fraldas, Papéis Toalha, Restos de comida não compostáveis</td>
+                    </tr>
+                    <tr>
+                        <td class="blue">Azul</td>
+                        <td>Papeis</td>
+                        <td>Caixas de Papelão, Folhas de Papel, Jornais</td>
+                    </tr>
+                    <tr>
+                        <td class="white">Branco</td>
+                        <td>Materiais Hospitalares</td>
+                        <td>Seringas, Máscaras Cirúrgicas, Luvas Descartáveis</td>
+                    </tr>
+                    <tr>
+                        <td class="orange">Laranja</td>
+                        <td>Materiais Perigosos</td>
+                        <td>Pilhas, Baterias, Lâmpadas Fluorescentes</td>
+                    </tr>
+                    <tr>
+                        <td class="black">Preta</td>
+                        <td>Madeira</td>
+                        <td>Móveis Quebrados, Paletes, Produtos de Madeira</td>
+                    </tr>
+                    <tr>
+                        <td class="purple">Roxa</td>
+                        <td>Lixo Radioativo</td>
+                        <td>Materiais utilizados em laboratórios com substâncias radioativas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+<br><br>
+<hr>
+<section id="testimonials">
+    <h1 class="headline">Reciclagem</h1>
+    <div width="80%" align-items="center">
+              <video controls poster="demo.jpg" weight="1280px" width="920px"  preload="auto" class="video">
+                <source src="img/Sustentabilidade e Reciclagem.mp4" type="video/mp4">
+                <source src="img/Sustentabilidade e Reciclagem.webm" type="video/webm">
+                <source src="img/Sustentabilidade e Reciclagem.ogv" type="video/ogg">
+                <object>
+                  <embed src="demo.mp4" type="application/x-shockwave-flash" 
+                  allowfullscreen="false" allowscriptaccess="always">  		
+                </object>
+                Formato não suportado  
+              </video>
+</section>
+<hr>
+<br><br>
+
+    <section id="gallery">
+        <h1 class="headline2">Recicle Conosco</h1>
+        <div id="gallery-container">
+            <img src="img/garrafas.jpg" alt="Imagem 1" class="gallery-image">
+            <img src="img/garrafas2.jpg" alt="Imagem 2" class="gallery-image">
+            <img src="img/garrafas3.jpg" alt="Imagem 3" class="gallery-image">
+            <img src="img/reciclando.jpg" alt="Imagem 4" class="gallery-image">
+            <img src="img/reciclando2.jpg" alt="Imagem 5" class="gallery-image">
+            <img src="img/reciclando3.jpg" alt="Imagem 6" class="gallery-image">
+        </div>
+    </section>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2024 ReciclaMais. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+    <!-- Acessibilidade -->
+    <div id="accessibility-tools">
+        <button onclick="changeFontSize('increase')">Aumentar Letras</button>
+        <button onclick="changeFontSize('decrease')">Diminuir Letras</button>
+        <button onclick="toggleHighContrast()">Alto Contraste</button>
+        <button onclick="resetAccessibility()">Reiniciar Ferramentas</button>
+    </div>
+
+    <div id="accessibility-button">
+        <button onclick="toggleAccessibilityTools()">
+            <img src="img/acessibilidade.png" alt="Acessibilidade">
+        </button>
+    </div>
+
+    <script>
+        let isReadableFont = false;
+        let isHighContrast = false;
+        let currentFontSize = 18;
+
+        function toggleAccessibilityTools() {
+            const tools = document.getElementById('accessibility-tools');
+            tools.style.display = tools.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function changeFontSize(action) {
+            const body = document.body;
+            if (action === 'increase') {
+                currentFontSize += 2;
+            } else if (action === 'decrease') {
+                currentFontSize = Math.max(12, currentFontSize - 2); // Define tamanho mínimo de 12px
+            }
+            body.style.fontSize = `${currentFontSize}px`;
+        }
+
+        function resetAccessibility() {
+            document.body.style.fontSize = '18px';
+            currentFontSize = 18;
+            if (isReadableFont) {
+                toggleReadableFont();
+            }
+            if (isHighContrast) {
+                toggleHighContrast();
+            }
+        }
+
+        function toggleHighContrast() {
+            const body = document.body;
+            isHighContrast = !isHighContrast;
+            if (isHighContrast) {
+                body.classList.add('high-contrast');
+            } else {
+                body.classList.remove('high-contrast');
+            }
+        }
+    </script>
+</body>
+
+</html>

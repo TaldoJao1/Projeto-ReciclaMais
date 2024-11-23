@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReciclaMais</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #dadada;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 1px #fff solid;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 25px;
+      color: #007a50;
+    }
+
+    p {
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .container img {
+      display: block;
+      margin: 0 auto;
+      filter:contrast(100%);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      padding: 10px;
+      background-color: #007a50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #009b65;
+    }
+
+    #accessibility-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #accessibility-button button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    #accessibility-button button img {
+      width: 60px;
+      height: 60px;
+    }
+
+    #accessibility-button button:hover {
+      background-color: #0056b3;
+    }
+
+    #accessibility-tools {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none;
+    }
+
+    #accessibility-tools button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #accessibility-tools button:hover {
+      background-color: #0056b3;
+    }
+
+    .readable-font {
+      font-family: Arial, sans-serif;
+    }
+
+    .high-contrast {
+      background-color: #000000;
+    }
+
+    .high-contrast .container {
+      background-color: rgb(0, 0, 0);
+    }
+
+    .high-contrast h1, .high-contrast p {
+      color: #02fff2;
+    }
+
+    .high-contrast label{
+      color: #ccff00;
+    }
+
+    .high-contrast input[type="submit"] {
+      background-color: #FF00FE;
+    }
+
+    .high-contrast input[type="submit"]:hover {
+      background-color: #c400c4;
+    }
+
+    .high-contrast .container img {
+      filter:invert(100%);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="corpo">
+    <div class="container">
+      <img src="img/3 (1).png" alt="Logo do site ReciclaMais" height="100px">
+      <h1>Cadastre-se ou Faça o Login </h1> 
+      <p>Para ter acesso ao restante das páginas.</p> <br>
+      <form class="form" action="processa_login.php" method="POST">
+
+        <label for="email">Email:</label>
+        <input type="email" id="emaillogin" name="emaillogin">
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senhalogin" name="senhalogin">
+
+        <input type="submit" value="Enviar" class="button">
+      </form>
+    </div>
+  </div>
+
+  <!-- Acessibilidade -->
+  <div id="accessibility-tools">
+    <button onclick="changeFontSize('increase')">Aumentar Letras</button>
+    <button onclick="changeFontSize('decrease')">Diminuir Letras</button>
+    <button onclick="toggleHighContrast()">Alto Contraste</button>
+    <button onclick="resetAccessibility()">Reiniciar Ferramentas</button>
+</div>
+
+<div id="accessibility-button">
+    <button onclick="toggleAccessibilityTools()">
+        <img src="img/acessibilidade.png" alt="Acessibilidade">
+    </button>
+</div>
+
+<script>
+    let isReadableFont = false;
+    let isHighContrast = false;
+    let currentFontSize = 16;
+
+    function toggleAccessibilityTools() {
+        const tools = document.getElementById('accessibility-tools');
+        tools.style.display = tools.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function changeFontSize(action) {
+        const body = document.body;
+        if (action === 'increase') {
+            currentFontSize += 2;
+        } else if (action === 'decrease') {
+            currentFontSize = Math.max(12, currentFontSize - 2); // Define tamanho mínimo de 12px
+        }
+        body.style.fontSize = `${currentFontSize}px`;
+    }
+
+    function resetAccessibility() {
+        document.body.style.fontSize = '16px';
+        currentFontSize = 16;
+        if (isReadableFont) {
+            toggleReadableFont();
+        }
+        if (isHighContrast) {
+            toggleHighContrast();
+        }
+    }
+
+    function toggleHighContrast() {
+        const body = document.body;
+        isHighContrast = !isHighContrast;
+        if (isHighContrast) {
+            body.classList.add('high-contrast');
+        } else {
+            body.classList.remove('high-contrast');
+        }
+    }
+</script>
+</body>
+</html>

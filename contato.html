@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - ReciclaMais</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(236, 236, 236);
+      font-size: 18px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #007a50;
+      padding: 20px 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .header img {
+      height: 60px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #ffffff;
+      color: #007a50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e0f2f1;
+      color: #000000;
+    }
+
+    .button2 {
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button2:hover {
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .button3{
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h3, .contact-info h3 {
+      color: #007a50;
+    }
+
+    .contact-info {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .contact-info > div {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .form {
+      margin-top: 30px;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .form input[type="text"],
+    .form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #0a5e40;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .form input[type="submit"]:hover {
+      background-color: #00925f;
+    }
+
+ 
+    /* Estilos para o rodapé */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      bottom: 0;
+      position: static;
+    }
+
+    #accessibility-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #accessibility-button button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    #accessibility-button button img {
+      width: 60px;
+      height: 60px;
+    }
+
+    #accessibility-button button:hover {
+      background-color: #0056b3;
+    }
+
+    #accessibility-tools {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none; /* Inicialmente oculto */
+      border-radius: 8px;
+    }
+
+    #accessibility-tools button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #accessibility-tools button:hover {
+      background-color: #0056b3;
+    }
+
+    .readable-font {
+      font-family: Arial, sans-serif;
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      margin-top: 5px;
+      border: 0px;
+      border-top: 1px solid rgb(236, 236, 236);
+    }
+
+    .high-contrast {
+      background-color: #000;
+      color: #ccff00;
+    }
+
+    .high-contrast .header {
+      background-color: #000000;
+    }
+    
+    .high-contrast .button, .high-contrast .button1 {
+      background-color: #FF00FE;
+      color: #ffffff;
+    }
+
+    .high-contrast .button2, .high-contrast .button3 {
+        color: #FF00FE;
+    }
+
+    .high-contrast .form input[type="submit"] {
+    background-color: #FF00FE; 
+    color: #ffffff; 
+    }
+
+    .high-contrast h3 {
+      color:#02fff2;
+    }
+
+    .high-contrast footer {
+      background-color: #000;
+      color: #02fff2;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="img/2 (2).png" alt="Logo do site ReciclaMais">
+    
+    <div class="menu">
+    <a href="index.html" class="button2">Home</a>
+    <a href="materiais.html" class="button2">Materiais Recicláveis</a>
+    <a href="locais.html" class="button2">Locais</a> 
+    <a href="contato.html" class="button3">Contato</a>
+    </div>
+    
+    <a href="cadastro.html" class="button">Sair</a>
+</header>
+  
+  <hr>
+
+  <div class="container">
+
+    <section class="contact-info">
+      <div>
+        <h3>Informações de Contato</h3>
+        <p>
+          <strong>Email:</strong><br>
+          contato@reciclamais.com
+        </p>
+        <p>
+          <strong>Telefone:</strong><br>
+          (00) 00000-0000
+        </p>
+        <p>
+          <strong>Endereço:</strong><br>
+          Rua Abilene, 16 - Parque Santo Antônio, São Paulo/SP<br> 00000-000
+        </p>
+      </div>
+      <div>
+        <h3>Horário de Funcionamento</h3>
+        <p>
+          Segunda a Sexta: 9h - 18h<br>
+          Sábado: 9h - 12h<br>
+          Domingo: Fechado
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-form">
+      <h3>Envie sua mensagem</h3>
+      <form class="form" method="post" action="processa_contato.php">
+
+        <label for="nomepessoacont">Nome:</label>
+        <input type="text" id="nomepessoacont" aria-required="true" required name="nomepessoacont" >
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="emailcont" aria-required="true" required name="emailcont" >
+
+        <label for="mensagem">Mensagem:</label>
+        <input type="text" id="mensagemcont" aria-required="true" required name="mensagemcont" placeholder="Digite sua mensagem" height="20px" width="20px">
+
+        <input type="submit" value="Enviar" class="button">
+      </form>
+    </section>
+
+  </div>
+  <br><br>
+  <Hr>
+  <footer>
+    <p>&copy; 2024 ReciclaMais. Todos os direitos reservados.</p>
+  </footer>
+
+  <div id="accessibility-tools" aria-hidden="true">
+    <button onclick="changeFontSize('increase')">Aumentar Letras</button>
+    <button onclick="changeFontSize('decrease')">Diminuir Letras</button>
+    <button onclick="toggleHighContrast()">Alto Contraste</button>
+    <button onclick="resetAccessibility()">Reiniciar Ferramentas</button>
+   
+  </div>
+
+  <div id="accessibility-button">
+    <button onclick="toggleAccessibilityTools()" aria-label="Abrir ferramentas de acessibilidade">
+      <img src="img/acessibilidade.png" alt="Acessibilidade">
+    </button>
+  </div>
+
+  <script>
+    let isReadableFont = false;
+    let isHighContrast = false;
+    let currentFontSize = 16;
+
+    function toggleAccessibilityTools() {
+      const tools = document.getElementById('accessibility-tools');
+      tools.style.display = tools.style.display === 'none' ? 'block' : 'none';
+      tools.setAttribute('aria-hidden', tools.style.display === 'none');
+    }
+
+    function changeFontSize(action) {
+      const body = document.body;
+      if (action === 'increase') {
+        currentFontSize += 2;
+      } else if (action === 'decrease') {
+        currentFontSize = Math.max(12, currentFontSize - 2);
+      }
+      body.style.fontSize = `${currentFontSize}px`;
+    }
+
+    function resetAccessibility() {
+      document.body.style.fontSize = '16px';
+      currentFontSize = 16;
+      if (isReadableFont) {
+        toggleReadableFont();
+      }
+      if (isHighContrast) {
+        toggleHighContrast();
+      }
+    }
+
+    function toggleHighContrast() {
+      const body = document.body;
+      isHighContrast = !isHighContrast;
+      body.classList.toggle('high-contrast', isHighContrast);
+    }
+  </script>
+</body>
+</html>

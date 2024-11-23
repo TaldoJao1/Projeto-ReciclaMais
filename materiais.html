@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReciclaMais</title>
+  <style>
+    /* Estilos para o header, footer, e acessibilidade */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(236, 236, 236);
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    }
+
+    #content-wrap {
+      flex: 1;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto; /* Garante que o footer fique no final */
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #007a50;
+        padding: 20px 40px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: #fff;
+    }
+
+    .header img {
+      height: 60px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      margin: 0;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #ffffff;
+      color: #007a50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #e0f2f1;
+      color: #000000;
+    }
+
+    .button2 {
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button2:hover {
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .button3{
+        padding: 12px 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff;
+        color: #007a50;
+    }
+
+    .materials-table {
+      width: 80%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      table-layout: fixed;
+    }
+    
+    .materials-table td {
+      border: 2px solid;
+      border-color: rgb(143, 143, 143);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .materials-table th {
+      background-color: #007a50;
+      color:rgb(236, 236, 236); 
+      border: 2px solid;
+      border-color: #48665b;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .materials-table tr:hover {
+      background-color: #ddd;
+    }
+
+    .material-selector {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .material-selector label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .material-selector select {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+        /* Accessibility */
+        #accessibility-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #accessibility-button button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #accessibility-button button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #accessibility-button button:hover {
+        background-color: #0056b3;
+    }
+
+    #accessibility-tools {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        border-radius: 8px;
+    }
+
+    #accessibility-tools button {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #accessibility-tools button:hover {
+        background-color: #0056b3;
+    }
+
+    .high-contrast {
+      background-color: #000;
+      color: #ccff00;
+    }
+    .high-contrast th {
+      background-color: #02fff2;
+      color: #000000
+    }
+    .high-contrast .materials-table tr:hover {
+      background-color: #ff0000;
+    }
+
+    .high-contrast .header {
+      background-color: #000000;
+    }
+
+    .high-contrast .menu ul li a {
+      color: #FF00FE;
+      border: #ffffff;
+    }
+
+    .high-contrast .menu ul li a:hover .menu ul li a.active {
+      background-color: #000000;
+      color: black;
+    }
+
+    .high-contrast footer {
+      background-color: #000;
+      color: #02fff2;
+    }
+
+    .high-contrast .material-selector select {
+      background-color: #000;
+      color: #02fff2;
+    }
+
+    .high-contrast option:disabled {
+      color: #ccff00;
+      background-color: #ff0000;
+    }
+
+    .high-contrast .button {
+      background-color: #FF00FE;
+      color: #ffffff;
+    }
+
+    .high-contrast .button2, .high-contrast .button3 {
+        color: #FF00FE;
+    }
+ 
+    option:disabled {
+      color: rgb(255, 255, 255); /* Cor do texto do texto fixo */
+      background-color: rgb(52, 158, 87);
+    }
+
+    hr{
+      width: 100%;
+      height: 1px;
+      margin-top: 5px;
+      border: 0px;
+      border-top: 1px solid rgb(236, 236, 236);
+    }
+  </style>
+</head>
+<body>
+  <div id="page-container">
+    <div id="content-wrap">
+      <header class="header">
+        <img src="img/2 (2).png" alt="Logo do site ReciclaMais">
+        
+        <div class="menu">
+        <a href="index.html" class="button2">Home</a>
+        <a href="materiais.html" class="button3">Materiais Recicláveis</a>
+        <a href="locais.html" class="button2">Locais</a> 
+        <a href="contato.html" class="button2">Contato</a>
+        </div>
+        
+        <a href="cadastro.html" class="button">Sair</a>
+    </header>
+    
+    
+      <hr>
+    
+      <div class="material-selector">
+        <label for="material-select">Selecione um material:</label>
+        <select id="material-select" onchange="updateTable()">
+          <option value="text" disabled selected>Filtro</option>
+          <option value="plastico">Plástico</option>
+          <option value="aluminio">Alumínio</option>
+          <option value="latao">Latão</option>
+          <option value="cobre">Cobre</option>
+          <option value="outros">Outros</option>
+          <!-- Adicione mais opções conforme necessário -->
+        </select>
+      </div>
+    
+      <table class="materials-table" id="materials-table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Preço por kg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="plastico-row">
+            <td>Pet</td>
+            <td>R$ 4,50</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>Pead Branco</td>
+            <td>R$ 2,80</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>Pead Colorido</td>
+            <td>R$ 2,60</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>PP Branco</td>
+            <td>R$ 2,90</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>PP Colorido</td>
+            <td>R$ 1,90</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>PP Preto</td>
+            <td>R$ 1,20</td>
+          </tr>
+          <tr class="plastico-row">
+            <td>PVC</td>
+            <td>R$ 0,50</td>
+          </tr>
+
+          
+          <tr class="aluminio-row">
+            <td>Cavaco</td>
+            <td>R$ 4,00</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Cavaco Refilado</td>
+            <td>R$ 4,50</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Bloco Limpo</td>
+            <td>R$ 8,70</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Bloco Misto</td>
+            <td>R$ 7,00</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Bloco A/F</td>
+            <td>R$ 3,90</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Chaparia </td>
+            <td>R$ 7,80</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Perfil Limpo</td>
+            <td>R$ 12,70</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Perfil Pintado</td>
+            <td>R$ 11,70</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Perfil N Misto</td>
+            <td>R$ 10,50</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Perfil P Misto</td>
+            <td>R$ 9,50 </td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Panela</td>
+            <td>R$ 10,50</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Latinha</td>
+            <td>R$ 8,10</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Aerosol Limpa</td>
+            <td>R$ 7,50</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Roda</td>
+            <td>R$ 13,80</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Off-set</td>
+            <td>R$ 10,80</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Radiador de Cobre com Alumínio</td>
+            <td>R$ 22,00</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Estamparia</td>
+            <td>R$ 9,50</td>
+          </tr>
+          <tr class="aluminio-row">
+            <td>Radiador</td>
+            <td>R$ 5,50</td>
+          </tr>
+    
+    
+          <tr class="latao-row">
+            <td>Sucata Metal</td>
+            <td>R$ 27,50</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Bronze</td>
+            <td>R$ 29,00</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Cav. Vergalhão</td>
+            <td>R$ 29,00</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Estamparia</td>
+            <td>R$ 31,00</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Pontas</td>
+            <td>R$ 30,00</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Cav. Refundido</td>
+            <td>R$ 21,00</td>
+          </tr>
+          <tr class="latao-row">
+            <td>Radiador Metal</td>
+            <td>R$ 27,50</td>
+          </tr>
+    
+          <tr class="cobre-row">
+            <td>Vermelho</td>
+            <td>R$ 44,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Queimado</td>
+            <td>R$ 41,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Cobre Estanhado 4</td>
+            <td>R$ 46,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Fio Encapado</td>
+            <td>R$ 14,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Fio Instalação</td>
+            <td>R$ 27,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Fio PP</td>
+            <td>R$ 9,00</td>
+          </tr>
+          <tr class="cobre-row">
+            <td>Radiador de Cobre com Alumínio</td>
+            <td>R$ 22,00</td>
+          </tr>
+    
+    
+          <tr class="outros-row">
+            <td>Ferro misto</td>
+            <td>R$ 1,05</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Ferro miúdo</td>
+            <td>R$ 1,25</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Ferro fundido</td>
+            <td>R$ 1,45</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Garimpo</td>
+            <td>R$ 2,50</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Inox 304</td>
+            <td>R$ 5,00</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Inox 430</td>
+            <td>R$ 1,50</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Cavaco Inox</td>
+            <td>R$ 2,50</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Zamak Limpo</td>
+            <td>R$ 11,00</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Bijoteria Limpa</td>
+            <td>R$ 5,00</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Magnésio</td>
+            <td>R$ 9,00</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Motor de Geladeira</td>
+            <td>R$ 2,50</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Panela Inox</td>
+            <td>R$ 2,00</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Bateria</td>
+            <td>R$ 3,70</td>
+          </tr>
+          <tr class="outros-row">
+            <td>Papelão</td>
+            <td>R$ 0,15</td>
+          </tr>
+          <!-- Linhas de outros materiais -->
+        </tbody>
+      </table>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+  <hr>
+
+  <footer id="footer">
+    <p>&copy; 2024 ReciclaMais. Todos os direitos reservados.</p>
+  </footer>
+
+</div>
+  
+
+  <div id="accessibility-tools">
+    <button onclick="changeFontSize('increase')">Aumentar Letras</button>
+    <button onclick="changeFontSize('decrease')">Diminuir Letras</button>
+    <button onclick="toggleHighContrast()">Alto Contraste</button>
+    <button onclick="resetAccessibility()">Reiniciar Ferramentas</button>
+    
+  </div>
+
+  <div id="accessibility-button">
+    <button onclick="toggleAccessibilityTools()">
+      <img src="img/acessibilidade.png" alt="Acessibilidade">
+    </button>
+  </div>
+
+  <script>
+    
+      
+    function updateTable() {
+      var materialSelect = document.getElementById("material-select");
+      var selectedValue = materialSelect.value;
+
+      // Esconder todas as linhas da tabela
+      var rows = document.querySelectorAll("#materials-table tbody tr");
+      rows.forEach(function(row) {
+        row.style.display = "none";
+      });
+
+      // Mostrar apenas as linhas correspondentes ao material selecionado
+      var selectedRows = document.querySelectorAll("." + selectedValue + "-row");
+      if (selectedRows) {
+        selectedRows.forEach(function(row) {
+          row.style.display = "";
+        });
+      }
+    }
+
+
+    // acessibilidade 
+    let isReadableFont = false;
+    let isHighContrast = false;
+    let currentFontSize = 18;
+
+    function toggleAccessibilityTools() {
+      const tools = document.getElementById('accessibility-tools');
+      tools.style.display = tools.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function changeFontSize(action) {
+      const body = document.body;
+      if (action === 'increase') {
+        currentFontSize += 2;
+      } else if (action === 'decrease') {
+        currentFontSize = Math.max(12, currentFontSize - 2); // Define tamanho mínimo de 12px
+      }
+      body.style.fontSize = `${currentFontSize}px`;
+    }
+
+    function resetAccessibility() {
+      document.body.style.fontSize = '18px';
+      currentFontSize = 18;
+      if (isReadableFont) {
+        toggleReadableFont();
+      }
+      if (isHighContrast) {
+        toggleHighContrast();
+      }
+    }
+
+    function toggleHighContrast() {
+      const body = document.body;
+      isHighContrast = !isHighContrast;
+      if (isHighContrast) {
+        body.classList.add('high-contrast');
+      } else {
+        body.classList.remove('high-contrast');
+      }
+    }
+  </script>
+</body>
+</html>
